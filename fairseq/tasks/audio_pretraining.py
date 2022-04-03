@@ -107,53 +107,6 @@ class AudioPretrainingConfig(FairseqDataclass):
     eval_wer: bool = field(
         default=False, metadata={"help": "compute WER for Seq2Seq models"}
     )
-    eval_wer_tokenizer: Any = field(
-        default=None,
-        metadata={"help": "tokenizer config for evaluating wer during training"},
-    )
-    eval_wer_post_process: str = field(
-        default="letter",
-        metadata={
-            "help": "remove BPE tokens before scoring (can be sentencepiece, letter, and more)"
-        },
-    )
-    eval_bleu: bool = field(
-        default=False, metadata={"help": "evaluation with BLEU scores"}
-    )
-    eval_bleu_detok: Optional[str] = field(
-        default=None,
-        metadata={
-            "help": "detokenize before computing BLEU (e.g., 'moses'); "
-            "required if using --eval-bleu; use 'space' to disable "
-            "detokenization; see fairseq.data.encoders for other options"
-        },
-    )
-    eval_bleu_detok_args: str = field(
-        default="{}", metadata={"help": "args for building the tokenizer, if needed"}
-    )
-    eval_tokenized_bleu: bool = field(
-        default=False, metadata={"help": "compute tokenized BLEU instead of sacrebleu"}
-    )
-    eval_bleu_remove_bpe: Optional[str] = field(
-        default=None, metadata={"help": "remove BPE before computing BLEU"}
-    )
-    eval_bleu_args: str = field(
-        default="{}",
-        metadata={
-            "help": "generation args for BLUE scoring, e.g., "
-            '\'{"beam": 4, "lenpen": 0.6}\''
-        },
-    )
-    eval_bleu_print_samples: bool = field(
-        default=False, metadata={"help": "print sample generations during validation"}
-    )
-    autoregressive: bool = field(
-        default=False,
-        metadata={
-            "help": "required for autoregressive decoders (like seq2seq models); "
-            "adds 'prev_output_tokens' to input and appends eos to target"
-        },
-    )
 
 
 @register_task("audio_pretraining", dataclass=AudioPretrainingConfig)
